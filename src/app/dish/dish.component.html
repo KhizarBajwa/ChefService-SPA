@@ -1,0 +1,80 @@
+<div class="jumbtron">
+  <form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off" class="col-md-5 form">
+    <h2 class="text-center text-primary">Dish</h2>
+    <input type="hidden" name="id" #id="ngModel" [(ngModel)]="formData.id">
+    <div class="form-group">
+      <input name="name" #name="ngModel" [(ngModel)]="formData.name" class="form-control" required
+        [ngClass]="{'is-invalid': form.controls['name']?.invalid && form.controls['name']?.touched}" placeholder="Name">
+      <div class="invalid-feedback" *ngIf="name.invalid && name.touched">Please inform the book's name.</div>
+    </div>
+    <div class="form-group">
+      <input name="author" #author="ngModel" [(ngModel)]="formData.author" class="form-control" placeholder="Author"
+        [ngClass]="{'is-invalid': form.controls['author']?.invalid && form.controls['author']?.touched}" required>
+      <div class="invalid-feedback" *ngIf="author.invalid && author.touched">Please inform the author's name.</div>
+    </div>
+    <div class="form-group">
+      <textarea name="description" #description="ngModel" [(ngModel)]="formData.description" class="form-control"
+        placeholder="Description"
+        [ngClass]="{'is-invalid': form.controls['description']?.invalid && form.controls['description']?.touched}"
+        required rows="4"></textarea>
+      <div class="invalid-feedback" *ngIf="description.invalid && description.touched">Please inform the description
+      </div>
+    </div>
+
+    <div class="form-group">
+      <input name="orginalPrice" #orginalPrice="ngModel" [(ngModel)]="formData.orginalPrice" class="form-control" placeholder="Orginal Price"
+        [ngClass]="{'is-invalid': form.controls['orginalPrice']?.invalid && form.controls['orginalPrice']?.touched}" required>
+      <div class="invalid-feedback" *ngIf="orginalPrice.invalid && orginalPrice.touched">Please provide dish orginal price.</div>
+    </div>
+
+    <div class="form-group">
+      <input name="discountedPrice" #discountedPrice="ngModel" [(ngModel)]="formData.discountedPrice" class="form-control" placeholder="Discounted Price"
+        [ngClass]="{'is-invalid': form.controls['discountedPrice']?.invalid && form.controls['discountedPrice']?.touched}" required>
+      <div class="invalid-feedback" *ngIf="discountedPrice.invalid && discountedPrice.touched">Please provide dish discounted price.</div>
+    </div>
+
+    <div class="form-group">
+      <input name="isInStock" #isInStock="ngModel" [(ngModel)]="formData.isInStock" class="form-control" placeholder="Discounted Price"
+        [ngClass]="{'is-invalid': form.controls['isInStock']?.invalid && form.controls['isInStock']?.touched}" required>
+      <div class="invalid-feedback" *ngIf="isInStock.invalid && isInStock.touched">Is all the ingredient available, and it's in stock. </div>
+    </div>
+
+    <div class="form-group">
+      <select class="form-control" name="categoryId" #categoryId [(ngModel)]="formData.categoryId" required>
+        <option value="null" disabled selected hidden>Category</option>
+        <option *ngFor="let category of categories" value="{{category.id}}">
+          {{category.name}}
+        </option>
+      </select>
+      <div class="invalid-feedback" *ngIf="categoryId.oninvalid && categoryId.ontouchend">Please inform the category</div>
+    </div>
+
+    <div class="form-group">
+      <div class="input-group">
+        <input class="form-control" placeholder="Publish Date" id="publishDate" name="publishDate" ngbDatepicker
+          #d="ngbDatepicker" #publishDate="ngModel" [(ngModel)]="formData.publishDate" class="form-control" type="text"
+          [(ngModel)]="formData.publishDate" [minDate]="{year: 1800, month: 1, day: 1}"
+          [ngClass]="{'is-invalid': form.controls['publishDate']?.invalid && form.controls['publishDate']?.touched}"
+          required>
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary fa fa-calendar-alt" (click)="d.toggle()" type="button"></button>
+        </div>
+        <div class="invalid-feedback" *ngIf="publishDate.invalid && publishDate.touched">Please inform the publish date
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <img [src]="imageSrc" style="max-width:300px;max-height:300px"/>
+      <input name="dishPic" [(ngModel)]="formData.dishPic" type="file" accept="image/*" (change)="handleInputChange($event)"
+       class="form-control" placeholder="Dish Image"
+        [ngClass]="{'is-invalid': form.controls['dishPic']?.invalid && form.controls['dishPic']?.touched}" required>
+    </div>
+
+    <div class="form-group text-center">
+      <button class="btn btn-success mr-2" [disabled]="form.invalid" type="submit">Save</button>
+      <button class="btn btn-default" type="button" (click)="cancel()">Cancel</button>
+    </div>
+
+  </form>
+</div>

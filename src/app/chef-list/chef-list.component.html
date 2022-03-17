@@ -1,0 +1,74 @@
+<div class="jumbtron">
+  <h1 class="display-4 text-center">Chefs</h1>
+</div>
+
+<div class="col-md-12">
+  <button type="button" class="btn btn-success" (click)="addChef()">
+    New Chef
+  </button>
+  <hr />
+
+  <div class="form-group">
+    <label for="Search">Search</label>
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <div class="input-group-text bg-white">
+          <i class="fas fa-search"></i>
+        </div>
+      </div>
+      <input
+        type="text"
+        [(ngModel)]="searchTerm"
+        (ngModelChange)="searchChef()"
+      />
+    </div>
+  </div>
+
+  <table class="table table-condensed table-bordered table-striped table-hover">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Name</th>
+        <th>Author</th>
+        <th>Category</th>
+        <th>Description</th>
+        <th>orginal Price</th>
+        <th>Discounted Price</th>
+        <th>Is In-Stock</th>
+        <th>Publish Date</th>
+        <th>rating</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let chef of chefs">
+        <td>{{ chef.chefPic }}</td>
+        <td>{{ chef.name }}</td>
+        <td>{{ chef.author }}</td>
+        <td>{{ chef.categoryName }}</td>
+        <td>
+          {{
+            chef.description.length > 25
+              ? (chef.description | slice: 0:25) + "..."
+              : chef.description
+          }}
+        </td>
+        <td>{{ chef.orginalPrice | currency }}</td>
+        <td>{{ chef.discountedPrice | currency }}</td>
+        <td>{{ chef.isInStock }}</td>
+        <td>{{ chef.publishDate | date: "mediumDate" }}</td>
+        <td>{{ chef.rating }}</td>
+        <td class="action-button-column">
+          <a title="Edit" (click)="editChef(chef.id)"
+            ><i class="fas fa-edit"></i>
+          </a>
+          <a
+            title="Delete"
+            (click)="deleteChef(chef.id)"
+            style="margin-left: 12px"
+            ><i class="fas fa-trash-alt"></i>
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,76 @@
+<div class="jumbtron">
+  <form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off" class="col-md-5 form">
+    <h2 class="text-center text-primary">Contact Us</h2>
+    <input type="hidden" name="id" #id="ngModel" [(ngModel)]="formData.id">
+
+    <div class="form-group">
+      <input name="name" #name="ngModel" [(ngModel)]="formData.name" class="form-control" required
+        [ngClass]="{'is-invalid': form.controls['name']?.invalid && form.controls['name']?.touched}"
+        placeholder="Your name">
+      <div class="invalid-feedback" *ngIf="name.invalid && name.touched">Please inform the category.</div>
+    </div>
+
+
+    <div class="form-group">
+      <input name="email" #email="ngModel" [(ngModel)]="formData.email" class="form-control" required
+        [ngClass]="{'is-invalid': form.controls['email']?.invalid && form.controls['email']?.touched}"
+        placeholder="Your email">
+      <div class="invalid-feedback" *ngIf="email.invalid && email.touched">Please inform the category.</div>
+    </div>
+
+
+
+    <div class="form-group">
+      <textarea name="howCanWeHelpYou" #howCanWeHelpYou="ngModel" [(ngModel)]="formData.howCanWeHelpYou" class="form-control" required
+        [ngClass]="{'is-invalid': form.controls['howCanWeHelpYou']?.invalid && form.controls['howCanWeHelpYou']?.touched}"
+        placeholder="How Can We Help You"></textarea>
+      <div class="invalid-feedback" *ngIf="howCanWeHelpYou.invalid && howCanWeHelpYou.touched">Please inform the category.</div>
+    </div>
+
+
+    <div class="form-group">
+      <label>File 1 </label>
+      <input name="attachment_1" type="file" #attachment_1="ngModel" [(ngModel)]="formData.attachment_1" class="form-control"
+        [ngClass]="{'is-invalid': form.controls['attachment_1']?.invalid && form.controls['attachment_1']?.touched}"
+        placeholder="Your attachment_1">
+      <div class="invalid-feedback" *ngIf="attachment_1.invalid && attachment_1.touched">Please inform the category.</div>
+    </div>
+
+    <div class="form-group">
+      <label>File 2 </label>
+      <input name="attachment_2" type="file" #attachment_2="ngModel" [(ngModel)]="formData.attachment_2" class="form-control"
+        [ngClass]="{'is-invalid': form.controls['attachment_2']?.invalid && form.controls['attachment_2']?.touched}"
+        placeholder="Your attachment_2">
+      <div class="invalid-feedback" *ngIf="attachment_2.invalid && attachment_2.touched">Please inform the category.</div>
+    </div>
+
+    <div class="form-group">
+      <label>File 3 </label>
+      <input name="attachment_3" type="file" #attachment_3="ngModel" [(ngModel)]="formData.attachment_3" class="form-control"
+        [ngClass]="{'is-invalid': form.controls['attachment_3']?.invalid && form.controls['attachment_3']?.touched}"
+        placeholder="Your attachment_3">
+      <div class="invalid-feedback" *ngIf="attachment_3.invalid && attachment_3.touched">Please inform the category.</div>
+    </div>
+
+    <div class="form-group">
+      <label>File 4 </label>
+      <input name="attachment_4" type="file" #attachment_4="ngModel" [(ngModel)]="formData.attachment_4" class="form-control"
+        [ngClass]="{'is-invalid': form.controls['attachment_4']?.invalid && form.controls['attachment_4']?.touched}"
+        placeholder="Your attachment_4">
+      <div class="invalid-feedback" *ngIf="attachment_4.invalid && attachment_4.touched">Please inform the category.</div>
+    </div>
+
+    <div class="form-group">
+      <label>File 5 </label>
+      <input name="attachment_5" type="file" #attachment_5="ngModel" [(ngModel)]="formData.attachment_5" class="form-control"
+        [ngClass]="{'is-invalid': form.controls['attachment_5']?.invalid && form.controls['attachment_5']?.touched}"
+        placeholder="Your attachment_5">
+      <div class="invalid-feedback" *ngIf="attachment_5.invalid && attachment_5.touched">Please inform the category.</div>
+    </div>
+
+    <div class="form-group text-center">
+      <button class="btn btn-success mr-2" [disabled]="form.invalid" type="submit">Save</button>
+      <button class="btn btn-default" type="button" (click)="cancel()">Cancel</button>
+    </div>
+  </form>
+</div>

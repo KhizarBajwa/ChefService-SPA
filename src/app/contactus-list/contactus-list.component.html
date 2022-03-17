@@ -1,0 +1,46 @@
+<div class="jumbtron">
+  <h1 class="display-4 text-center">Contact Us</h1>
+</div>
+
+<div class="col-md-12">
+  <button type="button" class="btn btn-success" (click)="addContactUs()">New ContactUs</button>
+  <hr />
+
+  <div class="form-group">
+    <label for="Search">Search</label>
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <div class="input-group-text bg-white">
+          <i class="fas fa-search"></i>
+        </div>
+      </div>
+      <input type="text" [(ngModel)]="searchTerm" (ngModelChange)="searchContactUs()" />
+    </div>
+  </div>
+
+  <table class="table table-condensed table-bordered table-striped table-hover">
+    <thead>
+      <tr>
+        <th>name</th>
+        <th>email</th>
+        <th>howCanWeHelpYou</th>
+        <th>files count</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let contactUs of contactUsList">
+        <td>{{contactUs.name}}</td>
+        <td>{{contactUs.email}}</td>
+        <td>{{contactUs.howCanWeHelpYou}}</td>
+        <td>2</td>
+        <td class="action-button-column">
+          <a title="Edit" (click)="editContactUs(contactUs.id)"><i class="fas fa-edit"></i> </a>
+          <a title="Delete" (click)="deleteContactUs(contactUs.id)" style="margin-left: 12px;"><i
+              class="fas fa-trash-alt"></i> </a>
+        </td>
+      </tr>
+    </tbody>
+
+  </table>
+</div>

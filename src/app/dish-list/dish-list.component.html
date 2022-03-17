@@ -1,0 +1,74 @@
+<div class="jumbtron">
+  <h1 class="display-4 text-center">Dishes</h1>
+</div>
+
+<div class="col-md-12">
+  <button type="button" class="btn btn-success" (click)="addDish()">
+    New Dish
+  </button>
+  <hr />
+
+  <div class="form-group">
+    <label for="Search">Search</label>
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <div class="input-group-text bg-white">
+          <i class="fas fa-search"></i>
+        </div>
+      </div>
+      <input
+        type="text"
+        [(ngModel)]="searchTerm"
+        (ngModelChange)="searchBooks()"
+      />
+    </div>
+  </div>
+
+  <table class="table table-condensed table-bordered table-striped table-hover">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Dish Name</th>
+        <th>Author</th>
+        <th>Category</th>
+        <th>Description</th>
+        <th>orginal Price</th>
+        <th>Discounted Price</th>
+        <th>Is In-Stock</th>
+        <th>Publish Date</th>
+        <th>rating</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let dish of dishes">
+        <td>{{ dish.dishPic }}</td>
+        <td>{{ dish.name }}</td>
+        <td>{{ dish.author }}</td>
+        <td>{{ dish.categoryName }}</td>
+        <td>
+          {{
+            dish.description.length > 25
+              ? (dish.description | slice: 0:25) + "..."
+              : dish.description
+          }}
+        </td>
+        <td>{{ dish.orginalPrice | currency }}</td>
+        <td>{{ dish.discountedPrice | currency }}</td>
+        <td>{{ dish.isInStock }}</td>
+        <td>{{ dish.publishDate | date: "mediumDate" }}</td>
+        <td>{{ dish.rating }}</td>
+        <td class="action-button-column">
+          <a title="Edit" (click)="editDish(dish.id)"
+            ><i class="fas fa-edit"></i>
+          </a>
+          <a
+            title="Delete"
+            (click)="deleteDish(dish.id)"
+            style="margin-left: 12px"
+            ><i class="fas fa-trash-alt"></i>
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
